@@ -1,0 +1,9 @@
+<header class="header">
+  <div *ngIf="!(isLogged$ | async); else viewLogout">
+    <h4>Hiberus Technical Test</h4>
+  </div>
+
+  <ng-template #viewLogout class="header__logout">
+    <button (click)="logOut()" class="header__logout-btn">Logout</button>
+  </ng-template>
+</header>

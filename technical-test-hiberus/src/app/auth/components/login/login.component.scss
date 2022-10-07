@@ -1,0 +1,97 @@
+@import "../../../styles/base/variables";
+@import "../../../styles/base/mixins";
+
+.container__login {
+  background-color: $white;
+  border-radius: 2rem;
+  padding: 1rem 1rem;
+  min-height: 700px;
+  @include flex(flex, center, center);
+}
+
+.section__login--form {
+  @include flex(flex, center, center);
+  flex-direction: column;
+  gap: 2rem;
+  & h2 {
+    color: $dark-blue;
+  }
+}
+
+.login__form {
+  gap: 0.5rem;
+  & .login__form--label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $dark-blue;
+  }
+
+  & .login__form--input {
+    height: 3rem;
+    width: 20rem;
+    border-radius: 0.7rem;
+    border: 0.5px solid gray;
+    font-size: 1rem;
+    @include flex(flex, space-between, center);
+    & input {
+      border: none;
+      padding: 0 0.5rem;
+      border-radius: 0.7rem;
+      height: 100%;
+      width: 100%;
+    }
+    & :focus {
+      outline: 1px solid $pink;
+    }
+    & .ng-valid.ng-touched {
+      border-bottom: 3px solid #07edac;
+    }
+    & .ng-invalid.ng-touched {
+      border-bottom: 3px solid rgb(190, 81, 81);
+    }
+  }
+}
+
+.btn {
+  border: none;
+  height: 3rem;
+  cursor: pointer;
+  width: 100%;
+  background-color: $light-blue;
+  color: $white;
+  border-radius: 0.7rem;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  transition: 0.3s;
+  &:hover {
+    background-color: $dark-blue;
+    color: $pink;
+  }
+}
+
+.signup__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  & p {
+    font-size: 1.2rem;
+    color: $dark-blue;
+  }
+  & .strong {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: $pink;
+    cursor: pointer;
+    font-weight: 500;
+  }
+}
+
+/* Form error messages */
+
+.container__error--message p {
+  font-weight: bold;
+  color: rgb(146, 3, 3);
+}

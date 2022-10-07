@@ -1,0 +1,62 @@
+@import "../../../styles/base/variables";
+@import "../../../styles/base/mixins";
+
+.container h1,
+h3 {
+  color: $dark-blue;
+  padding: 1rem;
+}
+
+.card {
+  border-radius: 0.7rem;
+  padding: 0.5rem;
+  height: 200px;
+
+  & .card-icons {
+    @include flex(flex, space-evenly, center);
+  }
+
+  & .btn:hover {
+    color: $pink;
+  }
+}
+
+.btn {
+  background-color: $light-blue;
+  border: none;
+  height: 3rem;
+  width: 6rem;
+  cursor: pointer;
+  color: $white;
+  border-radius: 0.7rem;
+  text-align: center;
+  transition: 0.3s;
+  &:hover {
+    background-color: $dark-blue;
+  }
+}
+
+.container__user--btn {
+  @include flex(flex, center, center);
+  & .btn {
+    margin-right: 1rem;
+  }
+
+  & .btn:disabled {
+    opacity: 0.5;
+  }
+}
+
+.container-error-message p {
+  padding: 0.5rem;
+  font-weight: bold;
+  color: rgb(146, 3, 3);
+}
+
+input.ng-valid.ng-touched {
+  border-bottom: 3px solid #79a399;
+}
+
+input.ng-invalid.ng-touched {
+  border-bottom: 3px solid rgb(190, 81, 81);
+}

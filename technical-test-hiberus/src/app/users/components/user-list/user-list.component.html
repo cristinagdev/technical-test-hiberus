@@ -1,0 +1,156 @@
+<div class="container">
+  <app-profile></app-profile>
+  <h3 class="text-center">Tu lista de usuarios</h3>
+  <!-- Buttons container -->
+  <div class="container__user--btn">
+    <button (click)="previousPage()" class="btn" [disabled]="page === 0">
+      Anterior
+    </button>
+    <button
+      class="btn"
+      (click)="nextPage()"
+      [disabled]="(usersList | filter: page:userLogged).length < 8"
+    >
+      Siguiente
+    </button>
+  </div>
+
+  <section class="container__user--cards row">
+    <!-- Users List -->
+    <article
+      *ngFor="let user of usersList | filter: page:userLogged"
+      class="col-12 col-md-6 col-lg-3 g-3"
+    >
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ user.name | uppercase }} {{ user.surname.toUpperCase() }}
+          </h5>
+          <p class="card-subtitle">{{ user.email }}</p>
+        </div>
+        <div class="card-icons">
+          <button class="btn" (click)="deleteUser(user.id)">
+            Borrar
+            <i class="bi bi-trash3"></i>
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalToEditAnUser"
+            data-bs-whatever="@mdo"
+            (click)="getUserId(user.id)"
+          >
+            Editar
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal to edit an user -->
+      <div
+        class="modal fade"
+        id="ModalToEditAnUser"
+        tabindex="-1"
+        aria-labelledby="ModalToEditAnUser"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalToEditAnUser">Editar usuario</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="editForm" (ngSubmit)="editUser(id)">
+                <label for="name" class="col-form-label">Nombre</label>
+                <input
+                  placeholder="Nombre"
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                />
+
+                <div
+                  class="container-error-message mt-2"
+                  *ngIf="checkForm('name', 'required')"
+                >
+                  <p>El campo nombre es requerido</p>
+                </div>
+                <div
+                  class="container-error-message mt-2"
+                  *ngIf="checkForm('name', 'minlength')"
+                >
+                  <p>El nombre debe tener al menos 3 caracteres</p>
+                </div>
+
+                <label for="surname" class="col-form-label">Apellidos</label>
+                <input
+                  placeholder="Apellidos"
+                  type="text"
+                  class="form-control"
+                  id="surname"
+                  formControlName="surname"
+                />
+
+                <div
+                  class="container-error-message mt-2"
+                  *ngIf="checkForm('surname', 'required')"
+                >
+                  <p>El campo apellidos es requerido</p>
+                </div>
+                <div
+                  class="container-error-message mt-2"
+                  *ngIf="checkForm('surname', 'minlength')"
+                >
+                  <p>El apellido debe tener al menos 3 caracteres</p>
+                </div>
+
+                <label for="email" class="col-form-label">Email</label>
+                <input
+                  placeholder="Email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                />
+
+                <div
+                  class="container-error-message mt-2"
+                  *ngIf="checkForm('email', 'required')"
+                >
+                  <p>El campo email es requerido</p>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn"
+                    data-bs-dismiss="modal"
+                    [disabled]="!editForm.valid"
+                  >
+                    Guardar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>

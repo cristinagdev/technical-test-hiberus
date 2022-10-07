@@ -1,0 +1,56 @@
+@import "../../../styles/base/variables";
+@import "../../../styles/base/mixins";
+.btn {
+  background-color: $pink;
+  border: none;
+  height: 3rem;
+  width: 5rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: $dark-blue;
+  border-radius: 0.7rem;
+  text-align: center;
+  transition: 0.3s;
+  &:hover {
+    background-color: $dark-blue;
+    color: $white;
+  }
+}
+
+.edit__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+
+  & .signup__form--label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $dark-blue;
+  }
+
+  & .signup__form--input {
+    height: 2rem;
+    width: 16rem;
+    border-radius: 0.7rem;
+    border: 0.5px solid gray;
+    font-size: 1rem;
+    @include flex(flex, space-between, center);
+    & input {
+      border: none;
+      padding: 0 0.5rem;
+      border-radius: 0.7rem;
+      height: 100%;
+      width: 100%;
+    }
+    & :focus {
+      outline: 1px solid $pink;
+    }
+    & .ng-valid.ng-touched {
+      border-bottom: 3px solid #07edac;
+    }
+    & .ng-invalid.ng-touched {
+      border-bottom: 3px solid rgb(190, 81, 81);
+    }
+  }
+}

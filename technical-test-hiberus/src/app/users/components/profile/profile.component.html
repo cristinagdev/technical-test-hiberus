@@ -1,0 +1,120 @@
+<div class="profile__container p-3">
+  <h1>Hola {{ userLogged?.name }}</h1>
+  <button
+    type="button"
+    class="btn"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo"
+  >
+    Perfil
+  </button>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            {{ userLogged?.name }}
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            [formGroup]="userProfileForm"
+            (ngSubmit)="editProfile(userLogged?.id)"
+            class="edit__form"
+          >
+            <div class="d-flex justify-content-between">
+              <label for="name" class="signup__form--label me-3">{{
+                userLogged?.name
+              }}</label>
+              <div class="signup__form--input">
+                <i class="bi bi-person-fill fs-5 p-2"></i>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Nombre"
+                  formControlName="name"
+                />
+              </div>
+            </div>
+
+            <!--  -->
+            <div class="d-flex justify-content-between">
+              <label for="surname" class="signup__form--label me-3">{{
+                userLogged?.surname
+              }}</label>
+              <div class="signup__form--input">
+                <i class="bi bi-person-lines-fill fs-5 p-2"></i>
+                <input
+                  type="text"
+                  formControlName="surname"
+                  id="surname"
+                  placeholder="Apellidos"
+                />
+              </div>
+            </div>
+            <!--  -->
+            <div class="d-flex justify-content-between">
+              <label for="email" class="signup__form--label me-3">{{
+                userLogged?.email
+              }}</label>
+              <div class="signup__form--input">
+                <i class="bi bi-envelope-fill fs-5 p-2"></i>
+                <input
+                  type="email"
+                  formControlName="email"
+                  id="email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <!--  -->
+            <div class="d-flex justify-content-between">
+              <label for="password" class="signup__form--label me-3"
+                >Contraseña*</label
+              >
+
+              <div class="signup__form--input">
+                <i class="bi bi-lock-fill fs-5 p-2"></i>
+                <input
+                  type="password"
+                  formControlName="password"
+                  id="password"
+                  placeholder="Contraseña"
+                />
+              </div>
+            </div>
+            <!--  -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn" data-bs-dismiss="modal">
+                Cerrar
+              </button>
+              <button
+                type="submit"
+                data-bs-dismiss="modal"
+                [disabled]="!userProfileForm.valid"
+                class="btn"
+              >
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

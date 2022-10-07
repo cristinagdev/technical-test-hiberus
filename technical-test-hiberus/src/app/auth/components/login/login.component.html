@@ -1,0 +1,65 @@
+<div class="container__login shadow row">
+  <section class="col-12 col-md-6">
+    <article class="section__login--form">
+      <h2>Inicia sesión</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login__form">
+        <label for="email" class="login__form--label">Email*</label>
+        <div class="login__form--input">
+          <i class="bi bi-envelope-fill f-4 p-2"></i>
+          <input
+            type="email"
+            formControlName="email"
+            id="email"
+            placeholder="Email"
+          />
+        </div>
+        <div
+          class="container__error--message"
+          *ngIf="checkForm('email', 'required')"
+        >
+          <p>El campo email es requerido</p>
+        </div>
+
+        <label for="password" class="login__form--label">Contraseña*</label>
+        <div class="login__form--input">
+          <i class="bi bi-lock-fill f-4 p-2"></i>
+          <input
+            type="password"
+            formControlName="password"
+            id="password"
+            placeholder="Contraseña"
+          />
+        </div>
+        <div
+          class="container__error--message"
+          *ngIf="checkForm('password', 'required')"
+        >
+          <p>El campo contraseña es requerido</p>
+        </div>
+
+        <button class="btn" type="submit">Iniciar Sesión</button>
+      </form>
+    </article>
+
+    <article class="signup__container">
+      <p>¿No tienes una cuenta?</p>
+      <a class="strong" routerLink="/auth/signup">Regístrate</a>
+    </article>
+  </section>
+
+  <section class="container__img col-12 col-md-6">
+    <img
+      class="img-fluid"
+      src="../../../../assets/undraw_designer_re_5v95.svg"
+      alt=""
+    />
+  </section>
+
+  <div
+    *ngIf="errorMessage"
+    class="alert alert-warning text-center"
+    role="alert"
+  >
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
